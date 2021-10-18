@@ -30,7 +30,7 @@ void Ex1(int arr[], int n) {
 		}
 	}
 	if (kt == 1)
-		printf("asymmetric");
+		printf("symmetric");
 	else
 		printf("not asymmetric");
 
