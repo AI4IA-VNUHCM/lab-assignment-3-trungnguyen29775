@@ -13,62 +13,56 @@ Ex:
 #include <math.h>
 
 void Ex3(int in_arr[], int n) {
-	int number_arr_in = -1;
-	int number_arr_de = -1;
-	int arr_in[1000];
-	int arr_de[1000];
-	int max_number_arr_in = 0;
-	int max_number_arr_de = 0;
-	int arr_clone[1000];
-	for (int i = 0; i < n - 1; i++)
+	int max=0;
+	int count = 0;
+	int clone_arr[1000];
+	int arr_result[1000];
+	for (int i = 0, j = i + 1; i < n - 1 && j < n; i++, j++)
 	{
-		if (in_arr[i] < in_arr[i + 1])
+		if (in_arr[i] <= in_arr[j])
 		{
-			number_arr_in += 1;
-			arr_clone[number_arr_in] = in_arr[i];
+			clone_arr[count] = in_arr[i];
+			count += 1;
 		}
-		if (in_arr[i] > in_arr[i + 1])
+		if (in_arr[i] > in_arr[j])
 		{
-			number_arr_in += 1;
-			arr_clone[number_arr_in] = in_arr[i];
-			if (max_number_arr_in < number_arr_in)
+			clone_arr[count] = in_arr[i];
+			if (max < count)
 			{
-				max_number_arr_in = number_arr_in;
-				for (int j = 0; j <= number_arr_in; j++)
-					arr_in[j] = arr_clone[j];
-
+				max = count;
+				for (int k = 0; k <= count; k++)
+					arr_result[k] = clone_arr[k];
 			}
-			number_arr_in = -1;
+			count = 0;
 		}
 	}
 	printf("Increasing ");
-	for (int i = 0; i <= max_number_arr_in; i++)
-		printf("%d ", arr_in[i]);
-	for (int i = 0; i < n - 1; i++)
+	for (int i = 0; i <= max; i++)
+		printf("%d ", arr_result[i]);
+	printf("Decreasing ");
+	count = 0;
+	max = 0;
+	for (int i = 0, j = i + 1; i < n - 1 && j < n; i++, j++)
 	{
-		if (in_arr[i] > in_arr[i + 1])
+		if (in_arr[i] >= in_arr[j])
 		{
-			number_arr_de += 1;
-			arr_clone[number_arr_de] = in_arr[i];
+			clone_arr[count] = in_arr[i];
+			count += 1;
 		}
-		if (in_arr[i] < in_arr[i + 1])
+		if (in_arr[i] < in_arr[j])
 		{
-			number_arr_de += 1;
-			arr_clone[number_arr_de] = in_arr[i];
-			if (max_number_arr_de < number_arr_de)
+			clone_arr[count] = in_arr[i];
+			if (max < count)
 			{
-				max_number_arr_de = number_arr_de;
-				for (int j = 0; j <= number_arr_de; j++)
-					arr_de[j] = arr_clone[j];
-
+				max = count;
+				for (int k = 0; k <= count; k++)
+					arr_result[k] = clone_arr[k];
 			}
-			number_arr_de = -1;
+			count = 0;
 		}
 	}
-	printf("Decreasing ");
-	for (int i = 0; i <= max_number_arr_de; i++)
-		printf("%d ", arr_de[i]);
-
+	for (int i = 0; i <= max; i++)
+		printf("%d ", arr_result[i]);
 }
 
 int main(int argc, char* argv[]) {
