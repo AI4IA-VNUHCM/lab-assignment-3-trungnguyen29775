@@ -12,68 +12,62 @@ Ex:
 #include <stdlib.h>
 #include <math.h>
 
-void Ex3(int in_arr[], int n) {
-	int max=0;
-	int count = 0;
-	int clone_arr[1000];
-	int arr_result[1000];
-	for (int i = 0, j = i + 1; i < n - 1 && j < n; i++, j++)
+void Ex3(int in_arr[], int n){
+	int fInc[n], fDec[n];
+	fInc[0] = 1;
+	fDec[0] = 1;
+
+	int maxInc = 1;
+	int maxDec = 1;
+	int indexInc = 0, indexDec = 0;
+
+	for (int i = 1; i < n; i++)
 	{
-		if (in_arr[i] < in_arr[j])
+		fInc[i] = 1;
+		fDec[i] = 1;
+		if (in_arr[i] < in_arr[i-1])
 		{
-			clone_arr[count] = in_arr[i];
-			count += 1;
-		}
-		if (in_arr[i] > in_arr[j])
-		{
-			clone_arr[count] = in_arr[i];
-			if (max < count)
+			fDec[i] = fDec[i - 1] + 1;
+			if (fDec[i] > maxDec)
 			{
-				max = count;
-				for (int k = 0; k <= count; k++)
-					arr_result[k] = clone_arr[k];
+				maxDec = fDec[i];
+				indexDec = i;
 			}
-			count = 0;
+		}
+		else
+		{
+			fInc[i] = fInc[i - 1] + 1;
+			if (fInc[i] > maxInc)
+			{
+				maxInc = fInc[i];
+				indexInc = i;
+			}
 		}
 	}
+
 	printf("Increasing ");
-	for (int i = 0; i <= max; i++)
-		printf("%d ", arr_result[i]);
-	printf("Decreasing ");
-	count = 0;
-	max = 0;
-	for (int i = 0, j = i + 1; i < n - 1 && j < n; i++, j++)
+	for (int i = indexInc - maxInc + 1; i <= indexInc; i++)
 	{
-		if (in_arr[i] > in_arr[j])
-		{
-			clone_arr[count] = in_arr[i];
-			count += 1;
-		}
-		if (in_arr[i] < in_arr[j])
-		{
-			clone_arr[count] = in_arr[i];
-			if (max < count)
-			{
-				max = count;
-				for (int k = 0; k <= count; k++)
-					arr_result[k] = clone_arr[k];
-			}
-			count = 0;
-		}
+		printf("%d ", in_arr[i]);
 	}
-	for (int i = 0; i <= max; i++)
-		printf("%d ", arr_result[i]);
+
+	printf("Decreasing ");
+	for (int i = indexDec - maxDec + 1; i <= indexDec; i++)
+	{
+		printf("%d ", in_arr[i]);
+	}
+	
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 	//testing variable, applying it to your algorithm for auto-evaluating
 	argc--;
-	int testcase[argc], i;
-	for (i = 0; i < argc; i++) {
-		testcase[i] = atoi(argv[i + 1]);
+	int testcase[argc],i;
+	for(i=0; i<argc;i++){
+		testcase[i] = atoi(argv[i+1]);
 	}
-
+	
 	Ex3(testcase, argc);
-
+	
 	return 0;
 }

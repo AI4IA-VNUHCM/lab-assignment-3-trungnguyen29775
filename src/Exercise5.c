@@ -11,36 +11,55 @@ ______________________________________
 #include <stdlib.h>
 #include <math.h>
 
-void Ex5(int arr[], int n) {
-	//Your codes here
-	for (int i = 0; i < n - 1; i++)
+void Ex5(int arr[], int n){
+	int pos[n], nonPos[n];
+	int j = 0;
+	int t = 0;
+	for (int i = 0; i < n; i++)
 	{
-		for (int j = i + 1; j < n ; j++)
+		if (arr[i] > 0)
 		{
-			if (arr[i] > 0 && arr[j] > 0)
-				continue;
-			if (arr[i] < 0 && arr[j] > 0)
-			{
-				int t = arr[i];
-				arr[i] = arr[j];
-				arr[j] = t;
-			}
+			pos[j] = arr[i];
+			j++;
+		}
+		else
+		{
+			nonPos[t] = arr[i];
+			t++;
 		}
 	}
-	for (int i = 0; i < n; i++)
-		printf("%d ", arr[i]);
 
-}
+	// for (int i = 0; i < j; i++)
+	// {
+	// 	arr[i] = pos[i];
+	// }
 
-int main(int argc, char* argv[]) {
-	//testing variable, applying it to your algorithm for auto-evaluating
-	argc--;
-	int testcase[argc], i;
-	for (i = 0; i < argc; i++) {
-		testcase[i] = atoi(argv[i + 1]);
+	// for (int i = 0; i < t; i++)
+	// {
+	// 	arr[j + i] = nonPos[i];
+	// }
+
+	for (int i = 0; i < j; i++)
+	{
+		printf("%d ", pos[i]);
 	}
 
-	Ex5(testcase, argc);
+	for (int i = 0; i < t; i++)
+	{
+		printf("%d ", nonPos[i]);
 
+	}
+}
+
+int main(int argc, char *argv[]) {
+	//testing variable, applying it to your algorithm for auto-evaluating
+	argc--;
+	int testcase[argc],i;
+	for(i=0; i<argc;i++){
+		testcase[i] = atoi(argv[i+1]);
+	}
+	
+	Ex5(testcase, argc);
+	
 	return 0;
 }
