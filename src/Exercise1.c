@@ -14,21 +14,12 @@ Ex:
 
 void Ex1(int arr[], int n) {
 	int kt = 1;
-	int i = 0;
-	int j = n - 1;
-	while (i < n % 2 && j >= n % 2)
-	{
-		if (arr[i] == arr[j])
-		{
-			i += 1;
-			j -= 1;
-		}
-		else
+	for (int i = 0, j = n - 1; i <= (n - 1) % 2 && j >=(n - 1) % 2 ; i++,j--)
+		if (arr[i] != arr[j])
 		{
 			kt = 0;
 			break;
 		}
-	}
 	if (kt == 1)
 		printf("symmetric");
 	else
