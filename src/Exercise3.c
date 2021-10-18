@@ -43,7 +43,7 @@ void Ex3(int in_arr[], int n) {
 	}
 	printf("Increasing ");
 	for (int i = 0; i <= max_number_arr_in; i++)
-		printf("%d  ", arr_in[i]);
+		printf("%d ", arr_in[i]);
 	for (int i = 0; i < n - 1; i++)
 	{
 		if (in_arr[i] > in_arr[i + 1])
@@ -67,7 +67,7 @@ void Ex3(int in_arr[], int n) {
 	}
 	printf("Decreasing ");
 	for (int i = 0; i <= max_number_arr_de; i++)
-		printf("%d  ", arr_de[i]);
+		printf("%d ", arr_de[i]);
 
 }
 
