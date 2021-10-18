@@ -19,7 +19,7 @@ void Ex3(int in_arr[], int n) {
 	int arr_result[1000];
 	for (int i = 0, j = i + 1; i < n - 1 && j < n; i++, j++)
 	{
-		if (in_arr[i] <= in_arr[j])
+		if (in_arr[i] < in_arr[j])
 		{
 			clone_arr[count] = in_arr[i];
 			count += 1;
@@ -44,7 +44,7 @@ void Ex3(int in_arr[], int n) {
 	max = 0;
 	for (int i = 0, j = i + 1; i < n - 1 && j < n; i++, j++)
 	{
-		if (in_arr[i] >= in_arr[j])
+		if (in_arr[i] > in_arr[j])
 		{
 			clone_arr[count] = in_arr[i];
 			count += 1;
